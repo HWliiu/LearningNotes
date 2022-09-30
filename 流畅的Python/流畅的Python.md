@@ -6,7 +6,7 @@
 
 - 很多时候，特殊方法的调用是隐式的，比如 for i in x: 这个语句，背后其实用的是 iter(x)，而这个函数的背后则是 x.\_\_iter\_\_() 方法。
 
-![](assets\Pasted%20image%2020220801223225.png)
+![](assets/Pasted%20image%2020220801223225.png)
 
 #### 自定义的布尔值
 - 默认情况下，我们自己定义的类的实例总被认为是真的，除非这个类对 \_\_bool\_\_ 或者 __ len__ 函数有自己的实现。bool(x) 的背后是调用 x.\_\_bool\_\_() 的结果；如果不存在 __ bool__ 方法，那么 bool(x) 会尝试调用 x.\_\_len\_\_()。
@@ -21,7 +21,7 @@
 - 可变序列 list、bytearray、array.array、collections.deque 和 memoryview。 
 - 不可变序列 tuple、str 和 bytes。
 
- ![](assets\Pasted%20image%2020220801225850.png)
+ ![](assets/Pasted%20image%2020220801225850.png)
  
 #### 列表推导不会有变量泄漏的问题
 - 列表推导、生成器表达式，以及同它们很相似的集合（set）推导和字典（dict）推 导，在 Python 3 中都有了自己的局部作用域，就像函数似的。
@@ -43,12 +43,12 @@ list.sort 方法会就地排序列表，sorted会新建一个列表作为返回�
 collections.deque 类（双向队列）是一个线程安全、可以快速从两端添加或者删除元素的 数据类型。
 
 除了 deque 之外，还有些其他的 Python 标准库也有对队列的实现
-![](assets\Pasted%20image%2020220801231614.png)
+![](assets/Pasted%20image%2020220801231614.png)
 
 ---
 ### 第三章 字典和集合
 #### 泛映射类型
-![](assets\Pasted%20image%2020220802083608.png)
+![](assets/Pasted%20image%2020220802083608.png)
 
 #### 什么是可散列的数据类型
 - 如果一个对象是可散列的，那么在这个对象的生命周期中，它的散列值是不变 的，而且这个对象需要实现 \_\_hash\_\_() 方法。另外可散列对象还要有 \_\_eq\_\_() 方法，这样才能跟其他键做比较。如果两个可散列对象是相等的，那么它们的 散列值一定是一样的……
@@ -58,17 +58,17 @@ collections.deque 类（双向队列）是一个线程安全、可以快速从�
 如果有一个类继承了 dict（或UserDict），然后这个继承类提供了 \_\_missing\_\_ 方 法，那么在 \_\_getitem\_\_ 碰到找不到的键的时候，Python 就会自动调用它，而不是抛出一个 KeyError 异常。
 
 #### 字典的变种
-![](assets\Pasted%20image%2020220802091547.png)
+![](assets/Pasted%20image%2020220802091547.png)
 UserDict 并不是 dict 的子类，但是 UserDict 有一个叫作 data 的属性，是 dict 的实例，这个属性实际上是 UserDict 最终存储数据的地方。
 
 #### 不可变映射类型
 从 Python 3.3 开始，types 模块中引入了一个封装类名叫 MappingProxyType。如果给这个类 一个映射，它会返回一个只读的映射视图。虽然是个只读视图，但是它是动态的。这意味 着如果对原映射做出了改动，我们通过这个视图可以观察到，但是无法通过这个视图对原 映射做出修改。
 
 #### 集合的操作
-![](assets\Pasted%20image%2020220802093318.png)
-![](assets\Pasted%20image%2020220802093404.png)
+![](assets/Pasted%20image%2020220802093318.png)
+![](assets/Pasted%20image%2020220802093404.png)
 - 中缀表达式版本要求左右两边的操作数都是相同的集合类型，而函数版本只要求第一个操作数是集合类型。
-![](assets\Pasted%20image%2020220802093542.png)
+![](assets/Pasted%20image%2020220802093542.png)
 
 #### dict的实现及其导致的结果
 - **键必须是可散列的**
@@ -106,7 +106,7 @@ Python 简单的句法限制了 lambda 函数的定义体只能使用纯表达�
 #### 函数内省
 - 使用 dir 函数可以探知函数属性
 - 与用户定义的常规类一样，函数使用 \_\_dict__ 属性存储赋予它的用户属性。这相当于一种 基本形式的注解。
-![](assets\Pasted%20image%2020220802095958.png)
+![](assets/Pasted%20image%2020220802095958.png)
 
 #### 仅限关键字参数
 - Python 3 进一步提供了仅限关键字参数（keyword-only argument）。与之密切相关的是，调用函数时使用 * 和 \*\*“展 开”可迭代对象，映射到单个参数。
@@ -145,12 +145,12 @@ operator 模块中还有一类函数，能替代从序列中取出元素或读�
 ---
 ### 第七章 函数装饰器和闭包
 #### 变量作用域规则
-![](assets\Pasted%20image%2020220802173645.png)
+![](assets/Pasted%20image%2020220802173645.png)
 如果在函数中赋值时想让解释器把 b 当成全局变量，要使用 global 声明
 
 #### 闭包
 - 闭包指延伸了作用域的函数，其中包含函数定义体中引用、但是不在定义体中定义的 非全局变量。函数是不是匿名的没有关系，关键是它能访问定义体之外定义的非全局变量。
-![](assets\Pasted%20image%2020220802182246.png)
+![](assets/Pasted%20image%2020220802182246.png)
 - 闭包是一种函数，它会保留定义函数时存在的自由变量的绑定，这样调用函数时， 虽然定义作用域不可用了，但是仍能使用那些绑定。 
 - 注意，只有嵌套在其他函数中的函数才可能需要处理不在全局作用域中的外部变量
 
@@ -189,7 +189,7 @@ Python 内置了三个用于装饰方法的函数：property、classmethod 和 s
 #### 为任意对象做深复制和浅复制
 - 浅复制没什么问题，但有时我们需要的是深复制（即副本不共享内部对象的引用）。copy 模块提供的 deepcopy 和 copy 函数能为任意对象做深复制和浅复制。
 - 注意，一般来说，深复制不是件简单的事。如果对象有循环引用，那么这个朴素的算法会 进入无限循环。deepcopy 函数会记住已经复制的对象，因此能优雅地处理循环引用。
-![](assets\Pasted%20image%2020220802190025.png)
+![](assets/Pasted%20image%2020220802190025.png)
 - 此外，深复制有时可能太深了。例如，对象可能会引用不该复制的外部资源或单例值。我 们可以实现特殊方法 \_\_copy__() 和 \_\_deepcopy__()，控制 copy 和 deepcopy 的行为。
 
 #### 函数的参数作为引用时
@@ -277,7 +277,7 @@ Python 内置了三个用于装饰方法的函数：property、classmethod 和 s
  S.indices(len) -> (start, stop, stride) 
  给定长度为 len 的序列，计算 S 表示的扩展切片的起始（start）和结尾（stop）索 引，以及步幅（stride）。超出边界的索引会被截掉，这与常规切片的处理方式一样。 换句话说，indices 方法开放了内置序列实现的棘手逻辑，用于优雅地处理缺失索引和负 数索引，以及长度超过目标序列的切片。这个方法会“整顿”元组，把 start、stop 和 stride 都变成非负数，而且都落在指定长度序列的边界内。 
 - 下面举几个例子。假设有个长度为 5 的序列，例如 'ABCDE'：
-![](assets\Pasted%20image%2020220802225920.png)
+![](assets/Pasted%20image%2020220802225920.png)
 
 #### 动态存取属性
 - 属性查找失败后，解释器会调用 \_\_getattr__ 方法。简单来说，对 my_obj.x 表达式，Python 会检查 my_obj 实例有没有名为 x 的属性；如果没有，到类（my_obj.\_\_class__）中查找；如果 还没有，顺着继承树继续查找。如果依旧找不到，调用 my_obj 所属类中定义的 \_\_getattr__ 方法，传入 self 和属性名称的字符串形式（如 'x'）。
@@ -294,7 +294,7 @@ Python 内置了三个用于装饰方法的函数：property、classmethod 和 s
 - 关于接口，这里有个实用的补充定义：对象公开方法的子集，让对象在系统中扮演特定的角色。
 
 #### 序列协议
-![](assets\Pasted%20image%2020220803195018.png)
+![](assets/Pasted%20image%2020220803195018.png)
 - 虽然没有 \_\_iter__ 方法，但是 Foo 实例是可迭代的对象，因为发现有 \_\_getitem__ 方法时， Python 会调用它，传入从 0 开始的整数索引，尝试迭代对象（这是一种后备机制）。尽管 没有实现 \_\_contains__ 方法，但是 Python 足够智能，能迭代 Foo 实例，因此也能使用 in 运算符：Python 会做全面检查，看看有没有指定的元素。
 - 综上，鉴于序列协议的重要性，如果没有 \_\_iter__ 和 \_\_contains__ 方法，Python 会调用 \_\_getitem__ 方法，设法让迭代和 in 运算符可用。
 
@@ -306,12 +306,12 @@ Python 内置了三个用于装饰方法的函数：property、classmethod 和 s
 
 #### 定义抽象基类的子类
 - 导入时（加载并编译模块时），Python 不会检查抽象方法的实现，在运行时 实例化类时才会真正检查。
-- ![](assets\Pasted%20image%2020220803201334.png)
+- ![](assets/Pasted%20image%2020220803201334.png)
 
 #### 标准库中的抽象基类
 - 大多数抽象基类在 collections.abc 模块中定 义，不过其他地方也有。例如，numbers 和 io 包中有一些抽象基类。但是，collections. abc 中的抽象基类最常用。
 - 标准库中有两个名为 abc 的模块，这里说的是 collections.abc。为了减少加 载时间，Python 3.4 在 collections 包之外实现这个模块（在 Lib/\_collections_ abc.py 中），因此要 与 collections 分开导入。另一个 abc 模块就是 abc（即 Lib/abc.py），这里定义的是 abc.ABC 类。每个抽象 基类都依赖这个类，但是不用导入它，除非定义新抽象基类。
-- ![](assets\Pasted%20image%2020220803205300.png)
+- ![](assets/Pasted%20image%2020220803205300.png)
 - Iterable、Container 和 Sized：各个集合应该继承这三个抽象基类，或者至少实现兼容的协议。Iterable 通过 \_\_iter__ 方法支持迭代，Container 通过 \_\_contains__ 方法支持 in 运算符，Sized 通过 \_\_len__ 方法支持 len() 函数。
 - Sequence、Mapping 和 Set：这三个是主要的不可变集合类型，而且各自都有可变的子类。
 - MappingView：在 Python 3中，映射方法 .items()、.keys() 和 .values() 返回的对象分别是 ItemsView、 KeysView 和 ValuesView 的实例。
@@ -331,11 +331,11 @@ Python 内置了三个用于装饰方法的函数：property、classmethod 和 s
 - decimal.Decimal 没有注册为 numbers.Real 的虚拟子类，这有点奇怪。没注 册的原因是，如果你的程序需要 Decimal 的精度，要防止与其他低精度数字 类型混淆，尤其是浮点数。
 
 #### 定义并使用一个抽象基类
-![](assets\Pasted%20image%2020220803210732.png)
+![](assets/Pasted%20image%2020220803210732.png)
 - 其实，抽象方法可以有实现代码。即便实现了，子类也必须覆盖抽象方法， 但是在子类中可以使用 super() 函数调用抽象方法，为它添加功能，而不是 从头开始实现。
 
 #### 异常类的部分层次结构
-![](assets\Pasted%20image%2020220803211157.png)
+![](assets/Pasted%20image%2020220803211157.png)
 
 #### 抽象基类句法详解
 - 声明抽象基类最简单的方式是继承 abc.ABC 或其他抽象基类。 
@@ -370,7 +370,7 @@ Sequence.register(memoryview)
 ```
 
 #### 即便不注册，抽象基类也能把一个类识别为虚拟子类
-![](assets\Pasted%20image%2020220803215514.png)
+![](assets/Pasted%20image%2020220803215514.png)
 
 ---
 ### 第十二章 继承的优缺点
@@ -382,7 +382,7 @@ Sequence.register(memoryview)
 
 #### 多重继承和方法解析顺序
 - 任何实现多重继承的语言都要处理潜在的命名冲突，这种冲突由不相关的祖先类实现同名 方法引起。这种冲突称为“菱形问题”。
-![](assets\Pasted%20image%2020220803221142.png)
+![](assets/Pasted%20image%2020220803221142.png)
 - 若想把方法调用委托给超类，推荐的方式是使用内置的 super() 函数。使用 super() 调用方法时，会遵守方法解析顺序
 - 直接在类上调用实例方法时，必须显式传入 self 参数，因为这样访问的是未绑定方 法（unbound method）
 ```python
@@ -419,18 +419,18 @@ Python 施加了一些限制，做好了灵活性、可用性和安全性方面�
 - 如果 a 有 \_\_add__ 方法，而且返回值不是 NotImplemented，调用 a.\_\_add__(b)，然后返回结果。
 - 如果 a 没有 \_\_add__ 方法，或者调用 \_\_add__ 方法返回 NotImplemented，检查 b 有没有 \_\_radd__ 方法，如果有，而且没有返回 NotImplemented，调用 b.\_\_radd__(a)，然后返回结果。
 - 如果 b 没有 \_\_radd__ 方法，或者调用 \_\_radd__ 方法返回 NotImplemented，抛出 TypeError， 并在错误消息中指明操作数类型不支持。
-![](assets\Pasted%20image%2020220803224740.png)
+![](assets/Pasted%20image%2020220803224740.png)
 - 别把 NotImplemented 和 NotImplementedError 搞混了。前者是特殊的单例值， 如果中缀运算符特殊方法不能处理给定的操作数，那么要把它返回（return） 给解释器。而 NotImplementedError 是一种异常，抽象类中的占位方法把它抛 出（raise），提醒子类必须覆盖。
-- 如果由于类型不兼容而 导致运算符特殊方法无法返回有效的结果，那么应该返回 NotImplemented，而不是抛出 TypeError。返回 NotImplemented 时，另一个操作数所属的类型还有机会执行运算，即 Python 会尝试调用反向方法。![](assets\Pasted%20image%2020220810172017.png)
-![](assets\Pasted%20image%2020220803225540.png)
-![](assets\Pasted%20image%2020220803225606.png)
+- 如果由于类型不兼容而 导致运算符特殊方法无法返回有效的结果，那么应该返回 NotImplemented，而不是抛出 TypeError。返回 NotImplemented 时，另一个操作数所属的类型还有机会执行运算，即 Python 会尝试调用反向方法。![](assets/Pasted%20image%2020220810172017.png)
+![](assets/Pasted%20image%2020220803225540.png)
+![](assets/Pasted%20image%2020220803225606.png)
 - 如果操作数的类型不同，我们要检测出不能处理的操作数。本章使用两种方式处理这个问 题：一种是鸭子类型，直接尝试执行运算，如果有问题，捕获 TypeError 异常；另一种是 显式使用 isinstance 测试，\_\_mul__ 方法就是这么做的。这两种方式各有优缺点：鸭子类 型更灵活，但是显式检查更能预知结果。如果选择使用 isinstance，要小心，不能测试具 体类，而要测试 numbers.Real 抽象基类，例如 isinstance(scalar, numbers.Real)。这在 灵活性和安全性之间做了很好的折中，因为当前或未来由用户定义的类型可以声明为抽象 基类的真实子类或虚拟子类。
 
 #### 比较运算符
 Python 解释器对众多比较运算符（\=\=、!=、>、<、>=、<=）的处理与前文类似，不过在两 个方面有重大区别。
 - 正向和反向调用使用的是同一系列方法。这方面的规则如表 13-2 所示。例如，对 == 来说， 正向和反向调用都是 \_\_eq__ 方法，只是把参数对调了；而正向的 \_\_gt__ 方法调用的是 反向的 \_\_lt__ 方法，并把参数对调。
 - 对 == 和 != 来说，如果反向调用失败，Python 会比较对象的 ID，而不抛出 TypeError。返回 
-![](assets\Pasted%20image%2020220803225948.png)
+![](assets/Pasted%20image%2020220803225948.png)
 - [1,2] == (1, 2) 的结果是 False。
 - 重载了\==运算符后，!= 我们不用实现它，因为从 object 继承的 \_\_ne__ 方法的后备行为满足了 我们的需求：定义了 \_\_eq__ 方法，而且它不返回 NotImplemented，\_\_ne__ 会对 \_\_eq__ 返 回的结果取反。
 
@@ -467,7 +467,7 @@ yield用于构建生成器（generator），其作用与迭代器一样。所有
 - 明确可迭代的对象和迭代器之间的关系：Python 从可迭代的对象中获取迭代器。
 - 可迭代的对象：使用 iter 内置函数可以获取迭代器的对象。如果对象实现了能返回迭代器的 \_\_iter__ 方法，那么对象就是可迭代的。序列都可以迭代；实现了 \_\_getitem__ 方法，而且其参 数是从零开始的索引，这种对象也可以迭代。
 - 如果没有 for 语句，不得不使用 while 循环模拟，要像下面这样写：
-![](assets\Pasted%20image%2020220805145126.png|450)
+![](assets/Pasted%20image%2020220805145126.png|450)
 - StopIteration 异常表明迭代器到头了。Python 语言内部会处理 for 循环和其他迭代上下 文（如列表推导、元组拆包，等等）中的 StopIteration 异常。
 
 #### 迭代器
@@ -478,7 +478,7 @@ yield用于构建生成器（generator），其作用与迭代器一样。所有
 	- \_\_iter__：返回 self，以便在应该使用可迭代对象的地方使用迭代器，例如在 for 循环中。
 
 - 这个接口在 collections.abc.Iterator 抽象基类中制定。这个类定义了 \_\_next__ 抽象方法， 而且继承自 Iterable 类；\_\_iter__ 抽象方法则在 Iterable 类中定义。
-![](assets\Pasted%20image%2020220805152500.png)
+![](assets/Pasted%20image%2020220805152500.png)
 
 - 因为迭代器只需 \_\_next__ 和 \_\_iter__ 两个方法，所以除了调用 next() 方法，以及捕获 StopIteration 异常之外，没有办法检查是否还有遗留的元素。此外，也没有办法“还原” 迭代器。如果想再次迭代，那就要调用 iter(...)，传入之前构建迭代器的可迭代对象。 传入迭代器本身没用，因为前面说过 Iterator.\_\_iter__ 方法的实现方式是返回实例本身， 所以传入迭代器无法还原已经耗尽的迭代器。
 - 可迭代的对象一定不能是自身的迭代器。也就是说，可迭代的对象必须实现 \_\_iter__ 方法，但不能实现 \_\_next__ 方法。 
@@ -486,25 +486,25 @@ yield用于构建生成器（generator），其作用与迭代器一样。所有
 
 #### 生成器函数
 - 只要 Python 函数的定义体中有 yield 关键字，该函数就是生成器函数。调用生成器函数 时，会返回一个生成器对象（实现了迭代器接口）。也就是说，生成器函数是生成器工厂。
-![](assets\Pasted%20image%2020220805161658.png)
+![](assets/Pasted%20image%2020220805161658.png)
 - 生成器函数定义体中的 return 语句会 触发生成器对象抛出 StopIteration 异常。调用方可以从异常对象中获取返回值。可是，只有把生 成器函数当成协程使用时，这么做才有意义。
 - re.finditer 函数是 re.findall 函数的惰性版本，返回的不是列表，而是一个生成器，按 需生成 re.MatchObject 实例。
-![](assets\Pasted%20image%2020220805164929.png)
+![](assets/Pasted%20image%2020220805164929.png)
 
 #### 生成器表达式
 - 生成器表达式可以理解为列表推导的惰性版本：不会迫切地构建列表，而是返回一个生成 器，按需惰性生成元素。
-![](assets\Pasted%20image%2020220805164702.png)
+![](assets/Pasted%20image%2020220805164702.png)
 - 生成器表达式是语法糖：完全可以替换成生成器函数，不过有时使用生成器表达式更便 利。
 - 选择使用哪种句法很容易判断：如果生成器表达式要分成多行写，我倾向 于定义生成器函数，以便提高可读性。此外，生成器函数有名称，因此可以重用。
 - 如果函数或构造方法只有一个参数，传入生成器表达式时不用写一对调用函 数的括号，再写一对括号围住生成器表达式，只写一对括号就行了。然而，如 果生成器表达式后面还有其他参数，那么必须使用括号围住，否则会抛出 SyntaxError 异常。
 - 生成器当作典型的迭代器使用，即从集合中获取 元素。不过，生成器也可用于生成不受数据源限制的值。
 
 #### 标准库中的生成器函数
-![](assets\Pasted%20image%2020220805174733.png)
-![](assets\Pasted%20image%2020220805175249.png)
-![](assets\Pasted%20image%2020220805194229.png)
-![](assets\Pasted%20image%2020220805194543.png)
-![](assets\Pasted%20image%2020220805202520.png)
+![](assets/Pasted%20image%2020220805174733.png)
+![](assets/Pasted%20image%2020220805175249.png)
+![](assets/Pasted%20image%2020220805194229.png)
+![](assets/Pasted%20image%2020220805194543.png)
+![](assets/Pasted%20image%2020220805202520.png)
 
 #### yield from
 - 这个语句的 作用就是把不同的生成器结合在一起使用。
@@ -526,7 +526,7 @@ def chain(*iterables):
 
 #### 可迭代的归约函数
 - 这里列出的每个内置函数都可以使用 functools.reduce 函数实现，内置是因为使用它们便于解决常见的问题。此外，对 all 和 any 函数来说，有一项重要的优化措施是 reduce 函数做不到的：这两个函数会短路（即一 旦确定了结果就立即停止使用迭代器）。
-![](assets\Pasted%20image%2020220805221149.png)
+![](assets/Pasted%20image%2020220805221149.png)
 - 还有一个内置的函数接受一个可迭代的对象，返回不同的值——sorted。reversed 是生成 器函数，与此不同，sorted 会构建并返回真正的列表。毕竟，要读取输入的可迭代对象中 的每一个元素才能排序，而且排序的对象是列表，因此 sorted 操作完成后返回排序后的列 表。我在这里提到 sorted，是因为它可以处理任意的可迭代对象。
 
 #### 深入分析iter函数
@@ -599,7 +599,7 @@ else:
 - 上下文管理器协议包含 \_\_enter__ 和 \_\_exit__ 两个方法。with 语句开始运行时，会在上下 文管理器对象上调用 \_\_enter__ 方法。with 语句运行结束后，会在上下文管理器对象上调 用 \_\_exit__ 方法，以此扮演 finally 子句的角色。
 - 执行 with 后面的表达式 得到的结果是上下文管理器对象，不过，把值绑定到目标变量上（as 子句）是在上下文管 理器对象上调用 \_\_enter__ 方法的结果。
 - 与函数和模块不同，with 块没有定义新的作用域。
-![](assets\Pasted%20image%2020220805230642.png)
+![](assets/Pasted%20image%2020220805230642.png)
 - 碰巧，示例 15-1 中的 open() 函数返回 TextIOWrapper 类的实例，而该实例的 \_\_enter__ 方 法返回 self。不过，\_\_enter__ 方法除了返回上下文管理器之外，还可能返回其他对象。
 - 不管控制流程以哪种方式退出 with 块，都会在上下文管理器对象上调用 \_\_exit__ 方法， 而不是在 \_\_enter__ 方法返回的对象上调用。
 - with 语句的 as 子句是可选的。对 open 函数来说，必须加上 as 子句，以便获取文件的引 用。不过，有些上下文管理器会返回 None，因为没什么有用的对象能提供给用户。
@@ -653,7 +653,7 @@ else:
 - 关键的一点是，协程在 yield 关键字所在的位置暂停执行。前面说过，在赋值语句中，= 右边的代码在赋值之前执行。因此，对于 b = yield a 这行代码来说，等到客户端代码再 激活协程时才会设定 b 的值。
 
 #### 使用协程计算移动平均值
-![](assets\Pasted%20image%2020220806083334.png)
+![](assets/Pasted%20image%2020220806083334.png)
 使用协程的好处是，total 和 count 声明为局部变量即可，无需使用实例属性或闭包在多 次调用之间保持上下文。
 
 #### 预激协程的装饰器
@@ -684,9 +684,9 @@ def demo_finally():
 ```
 
 #### 让协程返回值
-![](assets\Pasted%20image%2020220806092732.png)
+![](assets/Pasted%20image%2020220806092732.png)
 - 注意，return 表达式的值会偷偷传给调用方，赋值给 StopIteration 异常的一个属性。这样 做有点不合常理，但是能保留生成器对象的常规行为——耗尽时抛出 StopIteration 异常。
-![](assets\Pasted%20image%2020220806092929.png)
+![](assets/Pasted%20image%2020220806092929.png)
 - yield from 结构会在内部自动捕获 StopIteration 异常。这种处理方式与 for 循环处理 StopIteration 异常的方式一样：循环机制使用用户易于理解的方式处理异 常。对 yield from 结构来说，解释器不仅会捕获 StopIteration 异常，还会把 value 属性 的值变成 yield from 表达式的值。
 
 #### 使用yield from
@@ -698,7 +698,7 @@ def demo_finally():
 	- 委派生成器：包含 yield from 表达式的生成器函数。
 	- 子生成器：从 yield from 表达式中 部 分 获 取 的 生 成 器。
 	- 调用方：调用委派生成器的客户端代码。
-![](assets\Pasted%20image%2020220806094717.png)
+![](assets/Pasted%20image%2020220806094717.png)
 （注：外层 for 循环重新迭代时会新建一个 grouper 实例，然后绑定到 group 变量上。前一个 grouper 实例（以及它创建的尚未终止的 averager 子生成器实例）被垃圾回收程序回收。）
 - grouper 发送的每个值都会经由 yield from 处 理， 通 过 管 道 传 给 averager 实 例。 grouper 会在 yield from 表达式处暂停，等待 averager 实例处理客户端发来的值。 averager 实例运行完毕后，返回的值绑定到 results[key] 上。while 循环会不断创建 averager 实例，处理更多的值。
 - 如果子生成器不终止，委派生成器会在 yield from 表达式处永远暂停。如果是这样，程序不会向前执行，因为 yield from （与 yield 一样）把控制权转交给客户代码（即，委派生成器的调用方）了。
@@ -722,8 +722,8 @@ def demo_finally():
 ### 第十七章 使用future处理并发
 #### 使用concurrent.futures模块
 - concurrent.futures 模块的主要特色是 ThreadPoolExecutor 和 ProcessPoolExecutor 类，这 两个类实现的接口能分别在不同的线程或进程中执行可调用的对象。这两个类在内部维护 着一个工作线程或进程池，以及要执行的任务队列。
-![](assets\Pasted%20image%2020220806154634.png)
-![](assets\Pasted%20image%2020220806154701.png)
+![](assets/Pasted%20image%2020220806154634.png)
+![](assets/Pasted%20image%2020220806154701.png)
 
 #### future 的概念
 - future 指一种对象，表示异步执行的操作。这个概念的作 用很大，是 concurrent.futures 模块和 asyncio 包的基础。
@@ -736,9 +736,9 @@ def demo_finally():
 - 可是，如果 future 没有运行结束，result 方法在两个 Future 类中的行为相差很大。对 concurrency.futures.Future 实例来说，调用 f.result() 方法会阻塞调用方所在的线程， 直到有结果可返回。此时，result 方法可以接收可选的 timeout 参数，如果在指定的时 间内 future 没有运行完毕，会抛出 TimeoutError 异常。asyncio. Future.result 方法不支持设定超时时间，在那个库中获取 future 的结果最好使用 yield from 结构。不过，对 concurrency.futures.Future 实例不能这么做。
 - 这两个库中有几个函数会返回 future，其他函数则使用 future，以用户易于理解的方式实现自 身。Executor.map 方法属于后者：返回值是一个迭代器，迭代器的 \_\_next__ 方 法调用各个 future 的 result 方法，因此我们得到的是各个 future 的结果，而非 future 本身（看源码，比较简单！）。
 - 为了从实用的角度理解 future，我们可以使用 concurrent.futures.as_completed 函数重写 示例。这个函数的参数是一个 future 列表，返回值是一个迭代器，在 future 运行结束 后产出 future。修 改 download_many 函 数， 把 较 抽 象 的 executor.map 调用换成两个 for 循环：一个用于创建并排定 future，另一个用于获取 future 的结果。
-![](assets\Pasted%20image%2020220806162758.png)
+![](assets/Pasted%20image%2020220806162758.png)
 注意，在这个示例中调用 future.result() 方法绝不会阻塞，因为 future 由 as_completed 函数产出。（as_completed返回的是一个迭代器，迭代获取future是会阻塞，所以获取到的future都是finished的）
-![](assets\Pasted%20image%2020220811223221.png)
+![](assets/Pasted%20image%2020220811223221.png)
 
 #### 阻塞型I/O和GIL
 - CPython 解释器本身就不是线程安全的，因此有全局解释器锁（GIL），一次只允许使用一 个线程执行 Python 字节码。因此，一个 Python 进程通常不能同时使用多个 CPU 核心。
@@ -796,9 +796,9 @@ class FrozenJSON:
 - 我们通常把 \_\_init__ 称为构造方法，这是从其他语言借鉴过来的术语。其实，用于构建实 例的是特殊方法 \_\_new__：这是个类方法（使用特殊方式处理，因此不必使用 @classmethod 装饰器），必须返回一个实例。返回的实例会作为第一个参数（即 self）传给 \_\_init__ 方 法。因为调用 \_\_init__ 方法时要传入实例，而且禁止返回任何值，所以 \_\_init__ 方法其实是“初始化方法”。真正的构造方法是 \_\_new__。我们几乎不需要自己编写 \_\_new__ 方法， 因为从 object 类继承的实现已经足够了。
 - \_\_new__ 方法也可以返回其他类的实例，此时，解释器不会调用 \_\_init__ 方法。
 - 也就是说，Python 构建对象的过程可以使用下述伪代码概括：
-![](assets\Pasted%20image%2020220807000719.png)
+![](assets/Pasted%20image%2020220807000719.png)
 - 使用 \_\_new__ 方法取代 build 方法，构建可能是也可能不是 FrozenJSON 实例的新对象:
-![](assets\Pasted%20image%2020220807000926.png)
+![](assets/Pasted%20image%2020220807000926.png)
 - 对象的 \_\_dict__ 属性中 存储着对象的属性——前提是类中没有声明 \_\_slots__ 属性。因此，更新 实例的 \_\_dict__ 属性，把值设为一个映射，能快速地在那个实例中创建一堆属性。
 
 #### 特性全解析
@@ -816,11 +816,11 @@ property(fget=None, fset=None, fdel=None, doc=None)
 - 实例属性不会遮盖类特性。
 - obj.attr 这样的表达式不会从 obj 开始寻找 attr，而是从 obj.__ class__ 开始，而且，仅当类中没有名为 attr 的特性时，Python 才会在 obj 实例中寻 找。这条规则不仅适用于特性，还适用于一整类描述符——覆盖型描述符（overriding descriptor）。
 - 直接存取 \_\_dict__ 属性能跳过特性的处理逻辑。
-![](assets\Pasted%20image%2020220807080937.png)
+![](assets/Pasted%20image%2020220807080937.png)
 
 #### 定义一个特性工厂函数
-![](assets\Pasted%20image%2020220807082858.png)
-![](assets\Pasted%20image%2020220807082935.png)
+![](assets/Pasted%20image%2020220807082858.png)
+![](assets/Pasted%20image%2020220807082935.png)
 
 #### 影响属性处理方式的特殊属性
 后面几节中的很多函数和特殊方法，其行为受下述 3 个特殊属性的影响：
@@ -859,22 +859,22 @@ property(fget=None, fset=None, fdel=None, doc=None)
 - 通常，可以只实现部分协议。
 - 除了 特性之外，使用描述符的 Python 功能还有方法及 classmethod 和 staticmethod 装饰器。
 - 描述符的用法是，创建一个实 例，作为另一个类的类属性。
-![](assets\Pasted%20image%2020220807094502.png)
+![](assets/Pasted%20image%2020220807094502.png)
 **描述符实例声明为托管类的类属性**（Quantity 实例是 LineItem 类的类属性）
 
-![](assets\Pasted%20image%2020220807111406.png)
+![](assets/Pasted%20image%2020220807111406.png)
 Quantity 实例是描述符，因此有个放大镜，用于获 取值（\_\_get__），以及一个手抓，用于设置值（\_\_set__）。
-![](assets\Pasted%20image%2020220807111427.png)
+![](assets/Pasted%20image%2020220807111427.png)
 
 #### 描述符示例：验证属性
-![](assets\Pasted%20image%2020220807142251.png)
-![](assets\Pasted%20image%2020220807142318.png)
+![](assets/Pasted%20image%2020220807142251.png)
+![](assets/Pasted%20image%2020220807142318.png)
 - 在示例 20-1 中，各个托管属性的名称与储存属性一样，而且读值方法不需要特殊的逻辑， 所以 Quantity 类不需要定义 \_\_get__ 方法。
 - 示例 20-1 有个缺点，在托管类的定义体中实例化描述符时要重复输入属性的名称。
 - 为了避免在描述符声明语句中重复输入属性名，我们将为每个 Quantity 实例的 storage_ name 属性生成一个独一无二的字符串。
 - 在前缀中使用井号能避免 storage_name 与用户使用点号创建的属性冲 突，因为 nutmeg.\_Quantity#0 是无效的 Python 句法。但是，内置的 getattr 和 setattr 函数可以使用这种“无效的”标识符获取和设置属性，此外也可以直接处理实例属性 \_\_dict__。
-![](assets\Pasted%20image%2020220807142822.png)
-![](assets\Pasted%20image%2020220807142849.png)
+![](assets/Pasted%20image%2020220807142822.png)
+![](assets/Pasted%20image%2020220807142849.png)
 - 注 意，\_\_get__ 方 法 有 三 个 参 数：self、instance 和 owner。owner 参 数 是 托 管 类（ 如 LineItem）的引用，通过描述符从托管类中获取属性时用得到。
 - 这里可以使用内置的高阶函数 getattr 和 setattr 存取值，无需使用 instance.\_\_dict__， 因为托管属性和储存属性的名称不同，所以把储存属性传给 getattr 函数不会触发描述符， 不会像示例 20-1 那样出现无限递归。
 - 如果使用 LineItem.weight 从类中获取托管属性（以 weight 为例），描述符的 \_\_get__ 方法接收到的 instance 参数值 是 None。因此，会抛出 AttributeError 异常。
@@ -888,37 +888,37 @@ Quantity 实例是描述符，因此有个放大镜，用于获 取值（\_\_get
 - （搞清楚谁覆盖谁：==覆盖== 是相对实例对象属性和类对象属性来说的，对于一个实例对象来说，如果它的类对象中有同名的覆盖型描述符属性，那么实例对象的这个属性就会被同名的类对象的属性描述符属性覆盖）
 - 覆盖型描述符也叫数 据描述符或强制描述符。非覆盖型描述符也叫非数据描述符或遮盖型描述符。
 - 分析对 Managed 类及其实例做属性读写时的行为：
-![](assets\Pasted%20image%2020220807152219.png)
-![](assets\Pasted%20image%2020220807152337.png)
+![](assets/Pasted%20image%2020220807152219.png)
+![](assets/Pasted%20image%2020220807152337.png)
 - **覆盖型描述符**	
 	- 实现 \_\_set__ 方法的描述符属于覆盖型描述符，因为虽然描述符是类属性，但是实现 \_\_set__ 方法的话，会覆盖对实例属性的赋值操作。
 	- 特 性也是覆盖型描述符：如果没提供设值函数，property 类中的 \_\_set__ 方法会抛出 AttributeError 异常，指明那个属性是只读的。
-	![](assets\Pasted%20image%2020220807152809.png)
-![](assets\Pasted%20image%2020220807152852.png)
+	![](assets/Pasted%20image%2020220807152809.png)
+![](assets/Pasted%20image%2020220807152852.png)
 - **没有__get__方法的覆盖型描述符**
 	- 通常，覆盖型描述符既会实现 \_\_set__ 方法，也会实现 \_\_get__ 方法，不过也可以只实 现 \_\_set__ 方法。
 	- 此时，只有写操作由描述符处理。通过实例读取描 述符会返回描述符对象本身，因为没有处理读操作的 \_\_get__ 方法。
 	- 如果直接通过实例的 \_\_dict__ 属性创建同名实例属性，以后再设置那个属性时，仍会由 \_\_set__ 方法插手接管， 但是读取那个属性的话，就会直接从实例中返回新赋予的值，而不会返回描述符对象。
-	![](assets\Pasted%20image%2020220807154216.png)
-	![](assets\Pasted%20image%2020220807154259.png)
+	![](assets/Pasted%20image%2020220807154216.png)
+	![](assets/Pasted%20image%2020220807154259.png)
 - **非覆盖型描述符**
 	- 没有实现 \_\_set__ 方法的描述符是非覆盖型描述符。
 	- 如果设置了同名的实例属性，描述符 会被遮盖，致使描述符无法处理那个实例的那个属性。
 	- 方法是以非覆盖型描述符实现的。
-	![](assets\Pasted%20image%2020220807161504.png)
+	![](assets/Pasted%20image%2020220807161504.png)
 - 不管描述符是不是覆盖型，为类属性赋值都能覆盖描述符。
-![](assets\Pasted%20image%2020220807161809.png)
+![](assets/Pasted%20image%2020220807161809.png)
 - 示例 20-12 揭示了读写属性的另一种不对等：读类属性的操作可以由依附在托管类上定义 有 、\_\_get__ 方法的描述符处理，但是写类属性的操作不会由依附在托管类上定义有 \_\_set__ 方法的描述符处理。
 - 若想控制设置类属性的操作，要把描述符依附在类的类上，即依附在元类上。 默认情况下，对用户定义的类来说，其元类是 type，而我们不能为 type 添 加属性。
 
 #### 方法是描述符
 - 在类中定义的函数属于绑定方法（bound method），因为用户定义的函数都有 __get__ 方法，所以依附到类上时，就相当于描述符。
-![](assets\Pasted%20image%2020220807162544.png)
+![](assets/Pasted%20image%2020220807162544.png)
 - 函数没有实现 \_\_set__ 方法，因此是非覆盖型描述符。
 - 从示例 20-13 中还可以看出一个重要信息：obj.spam 和 Managed.spam 获取的是不同的对 象。与描述符一样，通过托管类访问时，函数的 \_\_get__ 方法会返回自身的引用。但是， 通过实例访问时，函数的 \_\_get__ 方法返回的是绑定方法对象：一种可调用的对象，里 面包装着函数，并把托管实例（例如 obj）绑定给函数的第一个参数（即 self），这与 functools.partial 函数的行为一致。
 - 为了深入理解这种机制，请看示例 20-14：
-![](assets\Pasted%20image%2020220807164216.png)
-![](assets\Pasted%20image%2020220807164233.png)
+![](assets/Pasted%20image%2020220807164216.png)
+![](assets/Pasted%20image%2020220807164233.png)
 - 绑定方法对象还有个 \_\_call__ 方法，用于处理真正的调用过程。这个方法会调用 \_\_func__ 属性引用的原始函数，把函数的第一个参数设为绑定方法的 \_\_self__ 属性。这就是形参 self 的隐式绑定方式。
 
 #### 描述符用法建议
@@ -942,8 +942,8 @@ Quantity 实例是描述符，因此有个放大镜，用于获 取值（\_\_get
 #### 类工厂函数
 - 标准库中的一个类工厂函数——collections.namedtuple。我们把一个类名 和几个属性名传给这个函数，它会创建一个 tuple 的子类，其中的元素通过名称获取，还 为调试提供了友好的字符串表示形式（\_\_repr__）。
 - 参考 collections.namedtuple，下面我们创建一个 record_factory 函数，即时创建简单的 类（如 Dog）。
-![](assets\Pasted%20image%2020220807183316.png)
-![](assets\Pasted%20image%2020220807183945.png)
+![](assets/Pasted%20image%2020220807183316.png)
+![](assets/Pasted%20image%2020220807183945.png)
 - 通常，我们把 type 视作函数，因为我们像函数那样使用它，例如，调用 type(my_object) 获取对象所属的类——作用与 my_object.\_\_class__ 相同。然而，type 是一个类。当成类 使用时，传入三个参数可以新建一个类：
 ```python
 MyClass = type('MyClass', (MySuperClass, MyMixin), {'x': 42, 'x2': lambda self: self.x * 2})
@@ -954,7 +954,7 @@ type 的三个参数分别是 name、bases 和 dict。最后一个参数是一�
 
 ####  类装饰器
 - 类装饰器与函数装饰器非常类似，是参数为类对象的函数，返回原来的类或修改后的类。
-![](assets\Pasted%20image%2020220807192619.png)
+![](assets/Pasted%20image%2020220807192619.png)
 - 类装饰器能以较简单的方式做到以前需要使用元类去做的事 情——创建类时定制类。
 - 类装饰器有个重大缺点：只对直接依附的类有效。这意味着，被装饰的类的子类可能继承 也可能不继承装饰器所做的改动，具体情况视改动的方式而定。
 
@@ -975,21 +975,21 @@ type 的三个参数分别是 name、bases 和 dict。最后一个参数是一�
 - 元类是制造类的工厂，不过不是函数，而是类。
 - 默认情况下，Python 中的类是 type 类的实例。也就是说，type 是大多数内置的类和用户定义的类的元类。
 - 为了避免无限回溯，type 是其自身的实例。
-![](assets\Pasted%20image%2020220807195833.png)
+![](assets/Pasted%20image%2020220807195833.png)
 - object 类和 type 类之间的关系很独特：object 是 type 的实例，而 type 是 object 的子类。这种关系很“神奇”，无法使用 Python 代码表述，因为定义其 中一个之前另一个必须存在。type 是自身的实例这一点也很神奇。
 - 除了 type，标准库中还有一些别的元类，例如 ABCMeta 和 Enum。
 - collections.Iterable 所属的类是 abc.ABCMeta。Iterable 是抽象类，而 ABCMeta 不是—— 不管怎样，Iterable 是 ABCMeta 的实例。
 - 向上追溯，ABCMeta 最终所属的类也是 type。所有类都直接或间接地是 type 的实例，不 过只有元类同时也是 type 的子类。
 - 元类（如 ABCMeta）从 type 类继承了构建类的能力。
-![](assets\Pasted%20image%2020220807200428.png)
+![](assets/Pasted%20image%2020220807200428.png)
 - 元类可以通过实现 \_\_init__ 方法定制实例。元类的 \_\_init__ 方法可以做到类装饰器能做的任何事情，但是作用更大。
 - 编写元类时，通常会把 self 参数改成 cls。例如，在元类的 \_\_init__ 方 法中，把第一个参数命名为 cls 能清楚地表明要构建的实例是类。
 - 如果想进一步定制类，可以在元类中实现 \_\_new__ 方法。不过，通常情况下实 现 \_\_init__ 方法就够了。
 
 #### 定制描述符的元类
-![](assets\Pasted%20image%2020220807220523.png)
-![](assets\Pasted%20image%2020220807220836.png)
-![](assets\Pasted%20image%2020220807223138.png)
+![](assets/Pasted%20image%2020220807220523.png)
+![](assets/Pasted%20image%2020220807220836.png)
+![](assets/Pasted%20image%2020220807223138.png)
 
 #### 元类的特殊方法__prepare__
 - 在某些应用中，可能需要知道类的属性定义的顺序。type 构造方法及元类的 \_\_new__ 和 \_\_init__ 方法都会收到要计算的类的定义 体，形式是名称到属性的映像。然而在默认情况下，那个映射是字典；也就是说，元类或 类装饰器获得映射时，属性在类定义体中的顺序已经丢失了。
@@ -1001,7 +1001,7 @@ type 的三个参数分别是 name、bases 和 dict。最后一个参数是一�
 - cls.\_\_qualname__：Python 3.3 新引入的属性，其值是类或函数的限定名称，即从模块的全局作用域到类的 点分路径。例如，在示例 21-6 中，内部类 ClassTwo 的 \_\_qualname__ 属性，其值是字符 串 'ClassOne.ClassTwo'，而 \_\_name__ 属性的值是 'ClassTwo'。
 - cls.\_\_subclasses__() 这个方法返回一个列表，包含类的直接子类。这个方法的实现使用弱引用，防止在超类 和子类（子类在 \_\_bases__ 属性中储存指向超类的强引用）之间出现循环引用。这个方 法返回的列表中是内存里现存的子类。
 - cls.mro() 构建类时，如果需要获取储存在类属性 \_\_mro__ 中的超类元组，解释器会调用这个方 法。元类可以覆盖这个方法，定制要构建的类解析方法的顺序。
-![](assets\Pasted%20image%2020220807225705.png)
+![](assets/Pasted%20image%2020220807225705.png)
 
 
 [[Fluent Python 2E]]
