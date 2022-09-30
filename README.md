@@ -1,2 +1,2 @@
 # ObsidianNote
-Some learning notes.
+Obsidian notes synchronize.
