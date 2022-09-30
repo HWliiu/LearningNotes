@@ -1,0 +1,2 @@
+# ObsidianNote
+Some learning notes.
