@@ -177,7 +177,7 @@
 		![](assets/Pasted%20image%2020220808082838.png)
 	- Unlike unpacking, patterns don’t destructure iterables that are not sequences (such as iterators).
 	- The _ symbol is special in patterns: it matches any single item in that position, but it is never bound to the value of the matched item. Also, the _ is the only variable that can appear more than once in a pattern.
-	- ![](assets/Pasted%20image%2020220808083341.png]]![[Pasted%20image%2020220808083404.png)
+	- ![](assets/Pasted%20image%2020220808083341.png)![](assets/Pasted%20image%2020220808083404.png)
 	- ![](assets/Pasted%20image%2020220808084319.png)
 	- ![](assets/Pasted%20image%2020220808084537.png)
 	- ![](assets/Pasted%20image%2020220808084659.png)
@@ -192,9 +192,9 @@
 	- *Simple Class Patterns*
 		- ![](assets/Pasted%20image%2020220808090705.png)
 	- *Keyword Class Patterns*
-		- ![](assets/Pasted%20image%2020220808092934.png]] ![[Pasted%20image%2020220808093042.png)
+		- ![](assets/Pasted%20image%2020220808092934.png) ![](assets/Pasted%20image%2020220808093042.png)
 	- *Positional Class Patterns*
-		- ![](assets/Pasted%20image%2020220808093911.png]]![[Pasted%20image%2020220808093954.png]]![[Pasted%20image%2020220808094011.png)
+		- ![](assets/Pasted%20image%2020220808093911.png)![](assets/Pasted%20image%2020220808093954.png)![](assets/Pasted%20image%2020220808094011.png)
 
 ---
 ### CHAPTER 3 Dictionaries and Sets
@@ -259,8 +259,8 @@
 - The only difference is the presence of the \_\_annotations__ class attribute.![](assets/Pasted%20image%2020220808142508.png)
 - In the context of type hints, None is not the NoneType singleton, but an alias for NoneType itself.
 - *The Meaning of Variable Annotations*
-	- The `a` survives only as an annotation. It doesn’t become a class attribute because no value is bound to it. The b and c are stored as class attributes because they are bound to values.![](assets/Pasted%20image%2020220808145617.png]]![[Pasted%20image%2020220808145631.png)
-	- The a and b class attributes are descriptors. The c attribute is just a plain class attribute with the value 'spam'. The nt object has the a and b attributes as expected; it doesn’t have a c attribute, but Python retrieves it from the class, as usual.![](assets/Pasted%20image%2020220808145703.png]]![[Pasted%20image%2020220808145722.png]]![[Pasted%20image%2020220808150041.png)
+	- The `a` survives only as an annotation. It doesn’t become a class attribute because no value is bound to it. The b and c are stored as class attributes because they are bound to values.![](assets/Pasted%20image%2020220808145617.png)![](assets/Pasted%20image%2020220808145631.png)
+	- The a and b class attributes are descriptors. The c attribute is just a plain class attribute with the value 'spam'. The nt object has the a and b attributes as expected; it doesn’t have a c attribute, but Python retrieves it from the class, as usual.![](assets/Pasted%20image%2020220808145703.png)![](assets/Pasted%20image%2020220808145722.png)![](assets/Pasted%20image%2020220808150041.png)
 	- There is no attribute named a in DemoDataClass, because the a attribute will only exist in instances of DemoDataClass. It will be a public attribute that we can get and set, unless the class is frozen. But b and c exist as class attributes, with b holding the default value for the b instance attribute, while c is just a class attribute that will not be bound to the instances.![](assets/Pasted%20image%2020220808150312.png)
 - #### More About @dataclass
  ![](assets/Pasted%20image%2020220808151538.png)
@@ -274,7 +274,7 @@
  - The default_factory parameter lets you provide a function, class, or any other call‐ able, which will be invoked with zero arguments to build a default value each time an instance of the data class is created.
  - This way, each instance of ClubMember will have its own list—instead of all instances sharing the same list from the class, which is rarely what we want and is often a bug.
  - ![](assets/Pasted%20image%2020220808163441.png)
- - The default_factory is likely to be the most common option of the field function, but there are several others, listed in Table 5-3.![](assets/Pasted%20image%2020220808163728.png]]![[Pasted%20image%2020220808163741.png)
+ - The default_factory is likely to be the most common option of the field function, but there are several others, listed in Table 5-3.![](assets/Pasted%20image%2020220808163728.png)![](assets/Pasted%20image%2020220808163741.png)
 
 #### Post-init Processing
 - When \_\_post_init__ method exists, @dataclass will add code to the generated \_\_init__ to call \_\_post_init__ as the last step.
@@ -302,7 +302,7 @@ That type hint is saying: all_handles is a class attribute of type set-of-str, w
 [[#Pattern Matching]]
 
 #### Soapbox
-![](assets/Pasted%20image%2020220808170704.png]]![[Pasted%20image%2020220808170743.png)
+![](assets/Pasted%20image%2020220808170704.png)![](assets/Pasted%20image%2020220808170743.png)
 
 ---
 ### CHAPTER 6 Object References, Mutability, and Recycling
@@ -362,7 +362,7 @@ That type hint is saying: all_handles is a class attribute of type set-of-str, w
 - The annotations stuff: list and stuff: list[Any] mean the same thing: stuff is a list of objects of any type.
 - ![](assets/Pasted%20image%2020220808204050.png)
 - ![](assets/Pasted%20image%2020220808204303.png)
-- ![](assets/Pasted%20image%2020220808204637.png]]![[Pasted%20image%2020220808204954.png)
+- ![](assets/Pasted%20image%2020220808204637.png)![](assets/Pasted%20image%2020220808204954.png)
 
 #### Tuple Types 
 - There are three ways to annotate tuple types:
@@ -450,14 +450,14 @@ Callable[[ParamType1, ParamType2], ReturnType]
 ![](assets/Pasted%20image%2020220809232710.png)
 
 #### Memoization with functools.cache
-![](assets/Pasted%20image%2020220809233636.png]]![[Pasted%20image%2020220809233741.png]]![[Pasted%20image%2020220809233949.png]]![[Pasted%20image%2020220809234239.png)
+![](assets/Pasted%20image%2020220809233636.png)![](assets/Pasted%20image%2020220809233741.png)![](assets/Pasted%20image%2020220809233949.png)![](assets/Pasted%20image%2020220809234239.png)
 
 #### Using lru_cache
 - The functools.cache decorator is actually a simple wrapper around the older func tools.lru_cache function, which is more flexible and compatible with Python 3.8 and earlier versions.
 - ![](assets/Pasted%20image%2020220809234400.png)
 
 #### Function singledispatch
-![](assets/Pasted%20image%2020220809234935.png]]![[Pasted%20image%2020220809234958.png]]![[Pasted%20image%2020220809235746.png]]![[Pasted%20image%2020220809235856.png)
+![](assets/Pasted%20image%2020220809234935.png)![](assets/Pasted%20image%2020220809234958.png)![](assets/Pasted%20image%2020220809235746.png)![](assets/Pasted%20image%2020220809235856.png)
 
 #### A Class-Based Clock Decorator
 ![](assets/Pasted%20image%2020220810000625.png)
@@ -527,7 +527,7 @@ The operator.index() function calls the \_\_index__ special method. The function
 - ![](assets/Pasted%20image%2020220810143320.png)
 
 #### Limitations of Runtime Protocol Checks 
-![](assets/Pasted%20image%2020220810144421.png]]Type hinting complex.\_\_float__ on typeshed would not solve this problem because Python’s runtime generally ignores type hints—and can’t access the typeshed stub files anyway.![[Pasted%20image%2020220810144525.png)
+![](assets/Pasted%20image%2020220810144421.png)Type hinting complex.\_\_float__ on typeshed would not solve this problem because Python’s runtime generally ignores type hints—and can’t access the typeshed stub files anyway.![](assets/Pasted%20image%2020220810144525.png)
 ![](assets/Pasted%20image%2020220810144744.png)
 
 #### Best Practices for Protocol Design
@@ -591,9 +591,9 @@ The operator.index() function calls the \_\_index__ special method. The function
 • You can’t write initializers with default values for the “fields.” 
 • Method definitions are not allowed.
 
-- ![](assets/Pasted%20image%2020220809084124.png]]![[Pasted%20image%2020220809084138.png)
+- ![](assets/Pasted%20image%2020220809084124.png)![](assets/Pasted%20image%2020220809084138.png)
 
-- ![](assets/Pasted%20image%2020220809085845.png]]![[Pasted%20image%2020220809085927.png)
+- ![](assets/Pasted%20image%2020220809085845.png)![](assets/Pasted%20image%2020220809085927.png)
 
 #### Type Casting
 ![](assets/Pasted%20image%2020220809091131.png)
@@ -610,7 +610,7 @@ The operator.index() function calls the \_\_index__ special method. The function
 - Writing forward referencing type hints as strings is the standard and required practice as of Python 3.10. Static type checkers were designed to deal with that issue from the beginning.
 - The typing module includes three functions and a class categorized as Introspection helpers, the most important being typing.get_type_hints.
 - get_type_hints(obj, globals=None, locals=None, include_extras=False) […] : This is often the same as obj.\_\_annotations__. In addition, forward references encoded as string literals are handled by evaluating them in globals and locals namespaces. […]![](assets/Pasted%20image%2020220809093024.png)
-- PEP 563—Postponed Evaluation of Annotations was approved to make it unneces‐ sary to write annotations as strings, and to reduce the runtime costs of type hints. This PEP proposes changing function annotations and variable annotations so that they are no longer evaluated at function definition time. Instead, they are preserved in annotations in string form. ![](assets/Pasted%20image%2020220809114933.png]]![[Pasted%20image%2020220809114906.png]]![[Pasted%20image%2020220809093304.png]]The typing.get_type_hints function is able to resolve many type hints![[Pasted%20image%2020220809093326.png)That’s the recommended way to read type hints at runtime.
+- PEP 563—Postponed Evaluation of Annotations was approved to make it unneces‐ sary to write annotations as strings, and to reduce the runtime costs of type hints. This PEP proposes changing function annotations and variable annotations so that they are no longer evaluated at function definition time. Instead, they are preserved in annotations in string form. ![](assets/Pasted%20image%2020220809114933.png)![](assets/Pasted%20image%2020220809114906.png)![](assets/Pasted%20image%2020220809093304.png)The typing.get_type_hints function is able to resolve many type hints![](assets/Pasted%20image%2020220809093326.png)That’s the recommended way to read type hints at runtime.
 
 #### Implementing a Generic Class
 ![](assets/Pasted%20image%2020220809102008.png)
@@ -624,7 +624,7 @@ The operator.index() function calls the \_\_index__ special method. The function
 #### Variance 
 - Invariant: Python mutable collection types—such as list and set—are invariant.
 - Covariance: the subtype relationship of the parameterized dispensers varies in the same direction as the subtype relationship of the type parameters.![](assets/Pasted%20image%2020220809104604.png)
-- ![](assets/Pasted%20image%2020220809105029.png]]![[Pasted%20image%2020220809105045.png)
+- ![](assets/Pasted%20image%2020220809105029.png)![](assets/Pasted%20image%2020220809105045.png)
 
 #### Variance Review
 - **Invariant types**
@@ -705,7 +705,7 @@ The operator.index() function calls the \_\_index__ special method. The function
 - With Python 3.7, contextlib added AbstractAsyncContextManager, @asynccontext manager, and AsyncExitStack. They are similar to the equivalent utilities without the async part of the name, but designed for use with the new async with statement, covered in Chapter 21.
 
 #### Using @contextmanager
-![](assets/Pasted%20image%2020220810205010.png]]![[Pasted%20image%2020220810205026.png)
+![](assets/Pasted%20image%2020220810205010.png)![](assets/Pasted%20image%2020220810205026.png)
 A little-known feature of @contextmanager is that the generators decorated with it can also be used as decorators themselves.5 That happens because @contextmanager is implemented with the contextlib.ContextDecorator class.![](assets/Pasted%20image%2020220810205105.png)
 
 
@@ -714,49 +714,49 @@ A little-known feature of @contextmanager is that the generators decorated with 
 ![](assets/Pasted%20image%2020220810213637.png)
 
 #### A Bit of Jargon
-![](assets/Pasted%20image%2020220810215602.png]]![[Pasted%20image%2020220810221154.png]]![[Pasted%20image%2020220810221210.png)
+![](assets/Pasted%20image%2020220810215602.png)![](assets/Pasted%20image%2020220810221154.png)![](assets/Pasted%20image%2020220810221210.png)
 
 #### Processes, Threads, and Python’s Infamous GIL
-![](assets/Pasted%20image%2020220810221635.png]]![[Pasted%20image%2020220810222301.png)
+![](assets/Pasted%20image%2020220810221635.png)![](assets/Pasted%20image%2020220810222301.png)
 ![](assets/Pasted%20image%2020220810222917.png)
 
 #### A Concurrent Hello World
-- **Spinner with Threads** ![](assets/Pasted%20image%2020220811152421.png]]![[Pasted%20image%2020220811152448.png]]![[Pasted%20image%2020220811152504.png)(线程同步对象的相关概念看threading.py源码，Lock-->RLock-->Condition-->Semaphore, Event, Barrier-->Timer)
-- **Spinner with Processes**![](assets/Pasted%20image%2020220811152650.png]]one challenge when converting from threads to processes is how to communicate between processes that are isolated by the operating system and can’t share Python objects. This means that objects crossing process boundaries have to be serialized and deserialized, which cre‐ ates overhead. In Example 19-3, the only data that crosses the process boundary is the Event state, which is implemented with a low-level OS semaphore in the C code underlying the multiprocessing module.![[Pasted%20image%2020220811152832.png)
+- **Spinner with Threads** ![](assets/Pasted%20image%2020220811152421.png)![](assets/Pasted%20image%2020220811152448.png)![](assets/Pasted%20image%2020220811152504.png)(线程同步对象的相关概念看threading.py源码，Lock-->RLock-->Condition-->Semaphore, Event, Barrier-->Timer)
+- **Spinner with Processes**![](assets/Pasted%20image%2020220811152650.png)one challenge when converting from threads to processes is how to communicate between processes that are isolated by the operating system and can’t share Python objects. This means that objects crossing process boundaries have to be serialized and deserialized, which cre‐ ates overhead. In Example 19-3, the only data that crosses the process boundary is the Event state, which is implemented with a low-level OS semaphore in the C code underlying the multiprocessing module.![](assets/Pasted%20image%2020220811152832.png)
 - **Spinner with Coroutines**
 	- It is the job of OS schedulers to allocate CPU time to drive threads and processes. In contrast, coroutines are driven by an application-level event loop that manages a queue of pending coroutines, drives them one by one, monitors events triggered by I/O operations initiated by coroutines, and passes control back to the corresponding coroutine when each event happens.
 	- The event loop and the library coroutines and the user coroutines all execute in a single thread. Therefore, any time spent in a coroutine slows down the event loop—and all other coroutines.
-	- ![](assets/Pasted%20image%2020220811162224.png]]![[Pasted%20image%2020220811162309.png]]![[Pasted%20image%2020220811162325.png)
+	- ![](assets/Pasted%20image%2020220811162224.png)![](assets/Pasted%20image%2020220811162309.png)![](assets/Pasted%20image%2020220811162325.png)
 	- Python code using asyncio has only one flow of execution, unless you’ve explicitly started additional threads or processes. That means only one coroutine executes at any point in time. Concurrency is achieved by control passing from one coroutine to another.
 	- ![](assets/Pasted%20image%2020220811162954.png)
 
 #### Supervisors Side-by-Side
-![](assets/Pasted%20image%2020220811163822.png]]![[Pasted%20image%2020220811163843.png)
+![](assets/Pasted%20image%2020220811163822.png)![](assets/Pasted%20image%2020220811163843.png)
 
 #### The Real Impact of the GIL
 - Answer for threading: The spinner is controlled by a secondary thread, so it continues spinning while the primality test is computed by the main thread. Because Python suspends the running thread every 5ms (by default), making the GIL available to other pending threads. Therefore, the main thread running is_prime is interrupted every 5ms, allowing the secondary thread to wake up and iterate once through the for loop, until it calls the wait method of the done event, at which time it will release the GIL. The main thread will then grab the GIL, and the is_prime computation will proceed for another 5ms.
-- Answer for asyncio:![](assets/Pasted%20image%2020220811170733.png]]![[Pasted%20image%2020220811170753.png)
+- Answer for asyncio:![](assets/Pasted%20image%2020220811170733.png)![](assets/Pasted%20image%2020220811170753.png)
 
 #### A Homegrown Process Pool
 ![](assets/Pasted%20image%2020220811181521.png)
-![](assets/Pasted%20image%2020220811190131.png]]![[Pasted%20image%2020220811190210.png]]![[Pasted%20image%2020220811190417.png]]![[Pasted%20image%2020220811190436.png)
+![](assets/Pasted%20image%2020220811190131.png)![](assets/Pasted%20image%2020220811190210.png)![](assets/Pasted%20image%2020220811190417.png)![](assets/Pasted%20image%2020220811190436.png)
 
 
 ---
 ### CHAPTER 20 Concurrent Executors
-![](assets/Pasted%20image%2020220811210208.png]]![[Pasted%20image%2020220811210225.png)
+![](assets/Pasted%20image%2020220811210208.png)![](assets/Pasted%20image%2020220811210225.png)
 
 ![](assets/Pasted%20image%2020220811211520.png)
 
 #### Downloading with concurrent.futures
-![](assets/Pasted%20image%2020220811212816.png]]![[Pasted%20image%2020220811220608.png]]![[Pasted%20image%2020220811220712.png)
+![](assets/Pasted%20image%2020220811212816.png)![](assets/Pasted%20image%2020220811220608.png)![](assets/Pasted%20image%2020220811220712.png)
 
 #### Where Are the Futures?
 ![](assets/Pasted%20image%2020220811223053.png)
 ![](assets/Pasted%20image%2020220811223113.png)
 
 #### Multicore Prime Checker Redux
-![](assets/Pasted%20image%2020220811225114.png]]![[Pasted%20image%2020220811225127.png)
+![](assets/Pasted%20image%2020220811225114.png)![](assets/Pasted%20image%2020220811225127.png)
 ![](assets/Pasted%20image%2020220811225623.png)
 
 
@@ -770,11 +770,11 @@ A little-known feature of @contextmanager is that the generators decorated with 
 ![](assets/Pasted%20image%2020220811233046.png)
 
 #### An asyncio Example: Probing Domains
-![](assets/Pasted%20image%2020220811235944.png]]![[Pasted%20image%2020220812000005.png]]![[Pasted%20image%2020220812000022.png)
+![](assets/Pasted%20image%2020220811235944.png)![](assets/Pasted%20image%2020220812000005.png)![](assets/Pasted%20image%2020220812000022.png)
 ![](assets/Pasted%20image%2020220812000038.png)
 
 #### Guido’s Trick to Read Asynchronous Code
-![](assets/Pasted%20image%2020220812000852.png]]![[Pasted%20image%2020220812002436.png)
+![](assets/Pasted%20image%2020220812000852.png)![](assets/Pasted%20image%2020220812002436.png)
 
 #### New Concept: Awaitable
 - The `for` keyword works with iterables. The `await` keyword works with awaitables.
@@ -786,7 +786,7 @@ A little-known feature of @contextmanager is that the generators decorated with 
 	- Objects written in other languages using the Python/C API with a tp_as_async.am_await function, returning an iterator (similar to \_\_await__ method)
 
 #### Downloading with asyncio and HTTPX
-![](assets/Pasted%20image%2020220812084725.png]]![[Pasted%20image%2020220812084746.png]]![[Pasted%20image%2020220812084806.png]]![[Pasted%20image%2020220812084824.png)
+![](assets/Pasted%20image%2020220812084725.png)![](assets/Pasted%20image%2020220812084746.png)![](assets/Pasted%20image%2020220812084806.png)![](assets/Pasted%20image%2020220812084824.png)
 
 #### The Secret of Native Coroutines: Humble Generators
 ![](assets/Pasted%20image%2020220812091125.png)
@@ -800,8 +800,8 @@ PEP 492—Coroutines with async and await syntax introduced the async with state
 ![](assets/Pasted%20image%2020220812095558.png)
 
 #### Using asyncio.as_completed and a Thread
-![](assets/Pasted%20image%2020220812125456.png]]![[Pasted%20image%2020220812125512.png)Since Python 3.9, the asyncio.to_thread coroutine makes it easy to delegate file I/O to a thread pool provided by asyncio. If you need to support Python 3.7 or 3.8, “Dele‐ gating Tasks to Executors” on page 797 shows how to add a couple of lines to do it.
-![](assets/Pasted%20image%2020220812145740.png]]![[Pasted%20image%2020220812145800.png]]![[Pasted%20image%2020220812145951.png)
+![](assets/Pasted%20image%2020220812125456.png)![](assets/Pasted%20image%2020220812125512.png)Since Python 3.9, the asyncio.to_thread coroutine makes it easy to delegate file I/O to a thread pool provided by asyncio. If you need to support Python 3.7 or 3.8, “Dele‐ gating Tasks to Executors” on page 797 shows how to add a couple of lines to do it.
+![](assets/Pasted%20image%2020220812145740.png)![](assets/Pasted%20image%2020220812145800.png)![](assets/Pasted%20image%2020220812145951.png)
 (asyncio.as_completed 会立刻返回不会等待，迭代其返回的迭代器时可能会等待，且其返回的顺序是按完成的时间而不是原来的列表顺序)
 ![](assets/Pasted%20image%2020220812151201.png)
 
@@ -811,7 +811,7 @@ PEP 492—Coroutines with async and await syntax introduced the async with state
 #### Making Multiple Requests for Each Download
 ![](assets/Pasted%20image%2020220812152219.png)
 
-![](assets/Pasted%20image%2020220812152634.png]]![[Pasted%20image%2020220812152647.png)
+![](assets/Pasted%20image%2020220812152634.png)![](assets/Pasted%20image%2020220812152647.png)
 Much better than nested callbacks!
 
 #### Delegating Tasks to Executors
@@ -832,15 +832,15 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 
 #### Asynchronous Generator Functions
 - You can implement an asynchronous iterator by writing a class with \_\_anext__ and \_\_aiter__, but there is a simpler way: write a function declared with async def and use yield in its body.
-- ![](assets/Pasted%20image%2020220812194952.png]]![[Pasted%20image%2020220812195305.png)
+- ![](assets/Pasted%20image%2020220812194952.png)![](assets/Pasted%20image%2020220812195305.png)
 - ![](assets/Pasted%20image%2020220812195321.png)
 
 #### Experimenting with Python’s async console
 - Since Python 3.8, you can run the interpreter with the -m asyncio command-line option to get an “async REPL”: a Python console that imports asyncio, provides a running event loop, and accepts await, async for, and async with at the top-level prompt—which otherwise are syntax errors when used outside of native coroutines.
-- ![](assets/Pasted%20image%2020220812200549.png]]![[Pasted%20image%2020220812200602.png)
+- ![](assets/Pasted%20image%2020220812200549.png)![](assets/Pasted%20image%2020220812200602.png)
 
 #### Asynchronous generators as context managers
-![](assets/Pasted%20image%2020220812202101.png]]![[Pasted%20image%2020220812202115.png)
+![](assets/Pasted%20image%2020220812202101.png)![](assets/Pasted%20image%2020220812202115.png)
 
 #### Asynchronous generators versus native coroutines
 ![](assets/Pasted%20image%2020220812202715.png)
@@ -851,7 +851,7 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 - To summarize: an asynchronous generator expression can be defined anywhere in your program, but it can only be consumed inside a native coroutine or asynchro‐ nous generator function.
 
 #### Asynchronous comprehensions
-![](assets/Pasted%20image%2020220812232733.png]]![[Pasted%20image%2020220812232952.png)
+![](assets/Pasted%20image%2020220812232733.png)![](assets/Pasted%20image%2020220812232952.png)
 ![](assets/Pasted%20image%2020220812233608.png)
 
 #### async Beyond asyncio: Curio
@@ -861,7 +861,7 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 
 #### Type Hinting Asynchronous Objects
 - The return type of a native coroutine describes what you get when you await on that coroutine, which is the type of the object that appears in the return statements in the body of the native coroutine function.![](assets/Pasted%20image%2020220812235048.png)
-- ![](assets/Pasted%20image%2020220812235211.png]]![[Pasted%20image%2020220812235225.png)
+- ![](assets/Pasted%20image%2020220812235211.png)![](assets/Pasted%20image%2020220812235225.png)
 - I want to highlight three aspects of those generic types.
 	- First: they are all covariant on the first type parameter, which is the type of the items yielded from these objects.
 	- Second: AsyncGenerator and Coroutine are contravariant on the second to last parameter. That’s the type of the argument of the low-level .send() method that the event loop calls to drive asynchronous generators and coroutines. As such, it is an “input” type.
@@ -888,7 +888,7 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 - ![](assets/Pasted%20image%2020220813104254.png)
 - To avoid retyping the attribute name in the descriptor instances, we’ll implement \_\_set_name__ to set the storage_name of each Quantity instance. The \_\_set_name__ special method was added to the descriptor protocol in Python 3.6. The interpreter calls \_\_set_name__ on each descriptor it finds in a class body—if the descriptor implements it.
 - More precisely, \_\_set_name__ is called by type.\_\_new__—the constructor of objects representing classes.
-- ![](assets/Pasted%20image%2020220813104743.png]]![[Pasted%20image%2020220813104850.png)
+- ![](assets/Pasted%20image%2020220813104743.png)![](assets/Pasted%20image%2020220813104850.png)
 
 
 ---
@@ -906,8 +906,8 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 - ![](assets/Pasted%20image%2020220813155709.png)
 
 ![](assets/Pasted%20image%2020220813184137.png)
-![](assets/Pasted%20image%2020220813185115.png]]![[Pasted%20image%2020220813185200.png)
-![](assets/Pasted%20image%2020220813185524.png]]![[Pasted%20image%2020220813185934.png]]![[Pasted%20image%2020220813190113.png]]![[Pasted%20image%2020220813190134.png)
+![](assets/Pasted%20image%2020220813185115.png)![](assets/Pasted%20image%2020220813185200.png)
+![](assets/Pasted%20image%2020220813185524.png)![](assets/Pasted%20image%2020220813185934.png)![](assets/Pasted%20image%2020220813190113.png)![](assets/Pasted%20image%2020220813190134.png)
 
 ![](assets/Pasted%20image%2020220813185057.png)
 ![](assets/Pasted%20image%2020220813185459.png)
@@ -917,7 +917,7 @@ for in后接的如果是Iterable对象，则迭代iter函数返回的新Iterator
 The \_\_slots__ attribute is only effective if it is one of the entries in the class name‐ space passed to type.\_\_new__. Adding \_\_slots__ to an existing class has no effect. Python invokes \_\_init_subclass__ only after the class is built—by then it’s too late to configure \_\_slots__. A class decorator can’t configure \_\_slots__ either, because it is applied even later than \_\_init_subclass__.
 
 #### Enhancing Classes with a Class Decorator
-![](assets/Pasted%20image%2020220813191536.png]]![[Pasted%20image%2020220813191557.png)
+![](assets/Pasted%20image%2020220813191536.png)![](assets/Pasted%20image%2020220813191557.png)
 
 #### What Happens When: Import Time Versus Runtime
 - At import time, the interpreter:
