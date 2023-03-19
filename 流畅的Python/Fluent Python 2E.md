@@ -722,6 +722,61 @@ A little-known feature of @contextmanager is that the generators decorated with 
 
 #### A Concurrent Hello World
 - **Spinner with Threads** ![](assets/Pasted%20image%2020220811152421.png)![](assets/Pasted%20image%2020220811152448.png)![](assets/Pasted%20image%2020220811152504.png)(线程同步对象的相关概念看threading.py源码，Lock-->RLock-->Condition-->Semaphore, Event, Barrier-->Timer)
+
+> Lock 、 RLock 、 Condition 、 Semaphore 和 BoundedSemaphore 对象可以用作 with 语句的上下文管理器。当进入语句块时 acquire() 方法会被调用，退出语句块时 release() 会被调用。
+>
+>**Lock**: 原始锁是一个在锁定时不属于特定线程的同步基元组件。在Python中，它是能用的最低级的同步基元组件。一旦一个线程获得一个锁，会阻塞随后尝试获得锁的线程，直到它被释放；**任何线程都可以释放它**。需要注意的是 Lock 其实是一个工厂函数，返回平台支持的具体锁类中最有效的版本的实例。
+>
+>acquire(blocking=True, timeout=- 1):阻塞调用直到获取到锁，并返回True
+>
+>acquire(blocking=True, timeout=3):阻塞最多3秒，如果期间获取到锁则返回True，否则阻塞3秒后返回False并继续执行
+>
+>acquire(blocking=False):不阻塞，如果能获取到锁就返回True，否则返回False
+>
+>**RLock**：重入锁是一个可以被**同一个线程多次获取**的同步基元组件。在内部，它在基元锁的锁定/非锁定状态上附加了 "所属线程" 和 "递归等级" 的概念。**重入锁必须由获取它的线程释放**。一旦线程获得了重入锁，同一个线程再次获取它将不阻塞；线程必须在每次获取它时释放一次。
+>
+>**Condition**：条件变量总是与某种类型的锁对象相关联，锁对象可以通过传入获得，或者在缺省的情况下自动创建。当多个条件变量需要共享同一个锁时，传入一个锁很有用。锁是条件对象的一部分，你不必单独地跟踪它。
+>
+>acquire、release方法会请求底层锁，调用底层锁的相应方法。其它方法必须在持有关联的锁的情况下调用。 wait() 方法释放锁，然后阻塞直到其它线程调用 notify() 方法或 notify_all() 方法唤醒它。一旦被唤醒， wait() 方法重新获取锁并返回。它也可以指定超时时间。
+>
+>注意： notify() 方法和 notify_all() 方法并不会释放锁，这意味着被唤醒的线程不会立即从它们的 wait() 方法调用中返回，而是会在调用了 notify() 方法或 notify_all() 方法的线程最终放弃了锁的所有权后返回。
+>
+>使用条件变量的典型编程风格是将锁用于同步某些共享状态的权限，那些对状态的某些特定改变感兴趣的线程，它们重复调用 wait() 方法，直到看到所期望的改变发生；而对于修改状态的线程，它们将当前状态改变为可能是等待者所期待的新状态后，调用 notify() 方法或者 notify_all() 方法。例如，下面的代码是一个通用的无限缓冲区容量的生产者-消费者情形：
+>
+>```python
+># Consume one item
+>with cv: # cv是Condition变量, with语句进入时会获取底层锁
+>    while not an_item_is_available(): #判断是否有资源(不会一直询问)
+>        cv.wait() # wait方法释放底层锁，然后阻塞，直到在另外一个线程中调用同一个条件变量的 notify() 或 notify_all() 唤醒它，或者直到可选的超时发生。一旦被唤醒或者超时，它重新尝试获得锁并返回。当底层锁是个 RLock ，不会使用它的 release() 方法释放锁，因为当它被递归多次获取时，实际上可能无法解锁。相反，使用了 RLock 类的内部接口，即使多次递归获取它也能解锁它。 然后，在重新获取锁时，使用另一个内部接口来恢复递归级别。
+>    get_an_available_item() #消费资源
+>
+># Produce one item
+>with cv: #with语句进入时会获取底层锁
+>    make_an_item_available() #生产资源
+>    cv.notify() #默认唤醒一个等待这个条件的线程。注意此时还没有释放底层锁，在退出with语句时才释放
+>```
+>
+>使用 while 循环检查所要求的条件成立与否是有必要的，因为 wait() 方法可能要经过不确定长度的时间后才会返回，而此时导致 notify() 方法调用的那个条件可能已经不再成立。这是多线程编程所固有的问题。 wait_for() 方法可自动化条件检查，并简化超时计算。
+>
+>```python
+># Consume an item
+>with cv:
+>    cv.wait_for(an_item_is_available)
+>    get_an_available_item()
+>```
+>
+>wait_for方法会重复地调用 wait() 直到满足判断式或者发生超时。返回值是判断式最后一个返回值，而且如果方法发生超时会返回 False 。
+>
+>**Semaphore**：一个信号量管理一个内部计数器，该计数器因 acquire() 方法的调用而递减，因 release() 方法的调用而递增。 计数器的值永远不会小于零；当 acquire() 方法发现计数器为零时，将会阻塞，直到其它线程调用 release() 方法。
+>
+>**BoundedSemaphore**：有界信号量通过检查以确保它当前的值不会超过初始值。如果超过了初始值，将会引发 ValueError 异常。
+>
+>**Event**：一个事件对象管理一个内部标识，调用 set() 方法可将其设置为 true ，调用 clear() 方法可将其设置为 false ，调用 wait() 方法将进入阻塞直到标识为 true 。当标识为 true 时，调用 wait() 方法的线程不会被被阻塞。
+>
+>**Timer**：表示一个操作应该在等待一定的时间之后运行 --- 相当于一个定时器。 Timer 类是 Thread 类的子类，因此可以像一个自定义线程一样工作。
+>
+>**Barrier**：栅栏类提供一个简单的同步原语，用于应对固定数量的线程需要彼此相互等待的情况。线程调用 wait() 方法后将阻塞，直到所有线程都调用了 wait() 方法。此时所有线程将被同时释放。
+
 - **Spinner with Processes**![](assets/Pasted%20image%2020220811152650.png)one challenge when converting from threads to processes is how to communicate between processes that are isolated by the operating system and can’t share Python objects. This means that objects crossing process boundaries have to be serialized and deserialized, which cre‐ ates overhead. In Example 19-3, the only data that crosses the process boundary is the Event state, which is implemented with a low-level OS semaphore in the C code underlying the multiprocessing module.![](assets/Pasted%20image%2020220811152832.png)
 - **Spinner with Coroutines**
 	- It is the job of OS schedulers to allocate CPU time to drive threads and processes. In contrast, coroutines are driven by an application-level event loop that manages a queue of pending coroutines, drives them one by one, monitors events triggered by I/O operations initiated by coroutines, and passes control back to the corresponding coroutine when each event happens.
